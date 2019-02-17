@@ -94,24 +94,41 @@ $(document).ready(function() {
     alert('Your browser does not support gamepads, get the latest Google Chrome or Firefox.');
   }
 
+  var bankCounter = 1;
+
+  function bankPrevious() {
+    if(bankCounter > 1) {
+      bankCounter--;
+      $('#bank-number').html(bankCounter);
+    }
+  }
+
+  function bankNext() {
+    if(bankCounter < 9) {
+      bankCounter++;
+      $('#bank-number').html(bankCounter);
+    }
+  }
+
   // Sound control
   gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
-    console.log(e.control, group.sounds);
-    try {
-      group.sounds[samples.indexOf(e.control)].play();
-      var obj = s.select("#"+e.control);
-      obj.attr({ stroke: "#fff", strokeWidth: 5 });
+    if(e.control == 'SELECT_BACK') bankPrevious();
+    else if(e.control == 'START_FORWARD') bankNext();
+    else {
+      try {
+        group.sounds[samples.indexOf(e.control)].play();
+        s.select("#"+e.control).attr({ stroke: "#fff", strokeWidth: 5 });
+      }
+      catch(err) { console.log("Error trying to play ", e.control); }
     }
-    catch(err) { console.log("Error trying to play ", e.control, " : ", err); }
   });
 
   gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
     try {
       group.sounds[samples.indexOf(e.control)].stop();
-    var obj = s.select("#"+e.control);
-    obj.attr({ stroke: "#fff", strokeWidth: 0 });
+      s.select("#"+e.control).attr({ stroke: "#fff", strokeWidth: 0 });
     }
-    catch(err) { console.log("Error trying to stop ", e.control, " : ", err); }
+    catch(err) { console.log("Error trying to stop ", e.control); }
   });
 
   s.mouseup(function(e){
