@@ -97,15 +97,21 @@ $(document).ready(function() {
   // Sound control
   gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
     console.log(e.control, group.sounds);
-    group.sounds[samples.indexOf(e.control)].play();
-    var obj = s.select("#"+e.control);
-    obj.attr({ stroke: "#fff", strokeWidth: 5 });
+    try {
+      group.sounds[samples.indexOf(e.control)].play();
+      var obj = s.select("#"+e.control);
+      obj.attr({ stroke: "#fff", strokeWidth: 5 });
+    }
+    catch(err) { console.log("Error trying to play ", e.control, " : ", err); }
   });
 
   gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
-    group.sounds[samples.indexOf(e.control)].stop();
+    try {
+      group.sounds[samples.indexOf(e.control)].stop();
     var obj = s.select("#"+e.control);
     obj.attr({ stroke: "#fff", strokeWidth: 0 });
+    }
+    catch(err) { console.log("Error trying to stop ", e.control, " : ", err); }
   });
 
   s.mouseup(function(e){
