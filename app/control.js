@@ -109,4 +109,31 @@ $(document).ready(function() {
     obj.attr({ stroke: "#fff", strokeWidth: 0 });
   });
 
+  s.mouseup(function(e){
+    var obj = s.select("#"+e.target.id).attr({ stroke: "#fff", strokeWidth: 0 });
+    group.sounds[samples.indexOf(e.target.id)].stop();
+  });
+
+  s.mousedown(function(e){
+    var obj = s.select("#"+e.target.id).attr({ stroke: "#fff", strokeWidth: 5 });
+    group.sounds[samples.indexOf(e.target.id)].play();
+  });
+
+  s.touchstart(function(e){
+    if (e.type === 'touchstart') {
+      // Stop propagation : on touch devices the first click will be used and not the second.
+      var obj = s.select("#"+e.target.id).attr({ stroke: "#fff", strokeWidth: 5 });
+      group.sounds[samples.indexOf(e.target.id)].play();
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  });
+
+  s.touchend(function(e){
+    if (e.type === 'touchend') {
+      var obj = s.select("#"+e.target.id).attr({ stroke: "#fff", strokeWidth: 0 });
+      group.sounds[samples.indexOf(e.target.id)].stop();
+    }
+  });
+
 });
