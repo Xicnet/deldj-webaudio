@@ -34,3 +34,9 @@ function loadBank() {
 
 loadBank();
 
+var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+    frequency: 400,
+    peak: 10
+});
+
+group.addEffect(lowPassFilter);

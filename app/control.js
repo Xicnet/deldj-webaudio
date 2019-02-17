@@ -89,6 +89,8 @@ $(document).ready(function() {
 
   gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
     $('#log-' + e.gamepad.index).html('<li>' + e.axis + ' changed to ' + e.value + '</li>');
+    try { lowPassFilter.frequency =  e.value * 2000; }
+    catch(err) { console.log("no filter: ", err); }
   });
 
   if (!gamepad.init()) {
