@@ -20,8 +20,11 @@ function loadBank() {
 
     banks[i] = new Pz.Sound({
       source: 'file',
-      options: { path: file, loop: true }
-
+      options: {
+        path: file,
+        attack: 0,
+        loop: true
+      }
     }, function() {
       console.log(`loaded`);
     });
