@@ -10,10 +10,13 @@ var samples = [ 'A', 'B', 'X', 'Y', 'L1', 'L2' ];
 var banks = [];
 
 var group = new Pizzicato.Group();
+/*
+ *  Load all banks at once
+ */
 function loadBank() {
   for(var i=0 ; i<samples.length ; i++) {
     var file = './audio/'+samples[i]+'.wav';
-    console.log("loading", samples[i]);
+    console.log("loading", file);
 
     banks[i] = new Pz.Sound({
       source: 'file',
