@@ -14,7 +14,7 @@ $(document).ready(function() {
     value,
     i;
 
-    mainWrap.append('<strong>State</strong><ul id="states-' + device.index + '"></ul>');
+    //mainWrap.append('<strong>State</strong><ul id="states-' + device.index + '"></ul>');
     mainWrap.append('<strong>Events</strong><ul id="log-' + device.index + '"></ul>');
 
     statesWrap = $('#states-' + device.index)
@@ -23,15 +23,15 @@ $(document).ready(function() {
       for (control in device.state) {
         value = device.state[control];
 
-        statesWrap.append('<li>' + control + ': <span id="state-' + device.index + '-' + control + '">' + value + '</span></li>');
+        //statesWrap.append('<li>' + control + ': <span id="state-' + device.index + '-' + control + '">' + value + '</span></li>');
       }
     for (i = 0; i < device.buttons.length; i++) {
       value = device.buttons[i];
-      statesWrap.append('<li>Raw Button ' + i + ': <span id="button-' + device.index + '-' + i + '">' + value + '</span></li>');
+      //statesWrap.append('<li>Raw Button ' + i + ': <span id="button-' + device.index + '-' + i + '">' + value + '</span></li>');
     }
     for (i = 0; i < device.axes.length; i++) {
       value = device.axes[i];
-      statesWrap.append('<li>Raw Axis ' + i + ': <span id="axis-' + device.index + '-' + i + '">' + value + '</span></li>');
+      //statesWrap.append('<li>Raw Axis ' + i + ': <span id="axis-' + device.index + '-' + i + '">' + value + '</span></li>');
     }
 
     $('#connect-notice').hide();
@@ -62,17 +62,14 @@ $(document).ready(function() {
       if (gamepad) {
         for (control in gamepad.state) {
           value = gamepad.state[control];
-
           $('#state-' + gamepad.index + '-' + control + '').html(value);
         }
         for (j = 0; j < gamepad.buttons.length; j++) {
           value = gamepad.buttons[j];
-
           $('#button-' + gamepad.index + '-' + j + '').html(value);
         }
         for (j = 0; j < gamepad.axes.length; j++) {
           value = gamepad.axes[j];
-
           $('#axis-' + gamepad.index + '-' + j + '').html(value);
         }
       }
