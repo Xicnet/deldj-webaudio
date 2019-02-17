@@ -3,66 +3,6 @@
     <script src="vendor/Pizzicato.js"></script>
   </head>
   <body>
-    <script>
-
-// Open File
-var sound = new Pizzicato.Sound({
-  source: 'file',
-  options: { path: './audio/1.wav' }
-}, function() {
-  console.log('sound file loaded!');
-});
-//sound.play();
-
-
-var reverb = new Pizzicato.Effects.Reverb({
-  time: 0.01,
-  decay: 0.01,
-  reverse: true,
-  mix: 0.3
-});
-
-//var drums = new Pz.Sound(options: {loop: true, path: './audio/1.wav'});
-/*
-var drums = new Pz.Sound({
-  source: 'file',
-  options: { path: './audio/3.wav', loop: true }
-
-}, function() {
-  console.log('sound file loaded!');
-});
-var guitar = new Pz.Sound('./audio/5.wav');
-var bass = new Pz.Sound('./audio/6.wav');
-
-var group = new Pizzicato.Group([drums, guitar, bass]);
-
-group.addSound(bass);
-*/
-//group.addEffect(reverb);
-
-var samples = [ 'A', 'B', 'X', 'Y', 'L1', 'L2' ];
-
-var banks = [];
-
-var group = new Pizzicato.Group();
-function loadBank() {
-  for(var i=0 ; i<samples.length ; i++) {
-    var file = './audio/'+samples[i]+'.wav';
-    console.log("loading", samples[i]);
-
-    banks[i] = new Pz.Sound({
-      source: 'file',
-      options: { path: file, loop: true }
-
-    }, function() {
-      console.log(`loaded`);
-    });
-    group.addSound(banks[i]);
-  }
-}
-
-loadBank();
-
-    </script>
+    <script src="app/audio.js"></script>
   </body>
 </html>
