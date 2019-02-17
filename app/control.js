@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  var bankCounter = 1;
+
   // Attach it to the window so it can be inspected at the console.
   window.gamepad = new Gamepad();
 
@@ -94,22 +96,6 @@ $(document).ready(function() {
     alert('Your browser does not support gamepads, get the latest Google Chrome or Firefox.');
   }
 
-  var bankCounter = 1;
-
-  function bankPrevious() {
-    if(bankCounter > 1) {
-      bankCounter--;
-      $('#bank-number').html(bankCounter);
-    }
-  }
-
-  function bankNext() {
-    if(bankCounter < 9) {
-      bankCounter++;
-      $('#bank-number').html(bankCounter);
-    }
-  }
-
   // Sound control
   gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
     if(e.control == 'SELECT_BACK') bankPrevious();
@@ -157,5 +143,28 @@ $(document).ready(function() {
       group.sounds[samples.indexOf(e.target.id)].stop();
     }
   });
+
+  // Bank control //
+
+
+  function bankSet(bank) {
+    loadBank(bank);
+    $('#bank-number').html(bank);
+    console.log(bank);
+  }
+
+  function bankPrevious() {
+    if(bankCounter > 1) {
+      bankCounter--;
+      bankSet(bankCounter);
+    }
+  }
+
+  function bankNext() {
+    if(bankCounter < 9) {
+      bankCounter++;
+      bankSet(bankCounter);
+    }
+  }
 
 });
