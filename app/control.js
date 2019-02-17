@@ -80,15 +80,15 @@ $(document).ready(function() {
   });
 
   gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
-    $('#log-' + e.gamepad.index).append('<li>' + e.control + ' down</li>');
+    $('#log-' + e.gamepad.index).html('<li>' + e.control + ' down</li>');
   });
 
   gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
-    $('#log-' + e.gamepad.index).append('<li>' + e.control + ' up</li>');
+    $('#log-' + e.gamepad.index).html('<li>' + e.control + ' up</li>');
   });
 
   gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
-    $('#log-' + e.gamepad.index).append('<li>' + e.axis + ' changed to ' + e.value + '</li>');
+    $('#log-' + e.gamepad.index).html('<li>' + e.axis + ' changed to ' + e.value + '</li>');
   });
 
   if (!gamepad.init()) {
@@ -97,21 +97,16 @@ $(document).ready(function() {
 
   // Sound control
   gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
-    if(e.control === 'FACE_1') group.sounds[0].play();
-    if(e.control === 'FACE_2') group.sounds[1].play();
-    if(e.control === 'FACE_3') group.sounds[2].play();
-    if(e.control === 'FACE_4') group.sounds[3].play();
-    if(e.control === 'LEFT_TOP_SHOULDER') group.sounds[4].play();
-    if(e.control === 'RIGHT_TOP_SHOULDER') group.sounds[5].play();
+    console.log(e.control, group.sounds);
+    group.sounds[samples.indexOf(e.control)].play();
+    var obj = s.select("#"+e.control);
+    obj.attr({ stroke: "#fff", strokeWidth: 5 });
   });
 
   gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
-    if(e.control === 'FACE_1') group.sounds[0].stop();
-    if(e.control === 'FACE_2') group.sounds[1].stop();
-    if(e.control === 'FACE_3') group.sounds[2].stop();
-    if(e.control === 'FACE_4') group.sounds[3].stop();
-    if(e.control === 'LEFT_TOP_SHOULDER') group.sounds[4].stop();
-    if(e.control === 'RIGHT_TOP_SHOULDER') group.sounds[5].stop();
+    group.sounds[samples.indexOf(e.control)].stop();
+    var obj = s.select("#"+e.control);
+    obj.attr({ stroke: "#fff", strokeWidth: 0 });
   });
 
 });

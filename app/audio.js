@@ -5,9 +5,9 @@ var reverb = new Pizzicato.Effects.Reverb({
   mix: 0.3
 });
 
-var samples = [ 'A', 'B', 'X', 'Y', 'L1', 'L2' ];
+var samples = [ 'FACE_1', 'FACE_2', 'FACE_3', 'FACE_4', 'LEFT_TOP_SHOULDER', 'RIGHT_TOP_SHOULDER' ];
 
-var banks = [];
+var banks = {};
 
 var group = new Pizzicato.Group();
 /*
@@ -15,8 +15,8 @@ var group = new Pizzicato.Group();
  */
 function loadBank() {
   for(var i=0 ; i<samples.length ; i++) {
-    var file = './audio/'+samples[i]+'.wav';
-    console.log("loading", file);
+    var file = './audio/'+samples[i].toLocaleLowerCase()+'.wav';
+    console.log("loading", file, samples[i]);
 
     banks[i] = new Pz.Sound({
       source: 'file',

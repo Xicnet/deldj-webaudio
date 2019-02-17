@@ -3,11 +3,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="vendor/gamepad.js"></script>
     <script src="vendor/Pizzicato.js"></script>
+    <script src="vendor/snap.svg-min.js"></script>
   </head>
   <body>
+    <div style="float: left">
+    <svg id="svg"></svg>
+    </div>
+    <div>
     <ul id="gamepads"></ul>
     <p id="connect-notice">Connect your controller and press any button.</p>
+    </div>
 
+    <script src="app/ui.js"></script>
     <script src="app/audio.js"></script>
     <script src="app/control.js"></script>
   </body>
