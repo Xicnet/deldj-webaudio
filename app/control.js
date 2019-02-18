@@ -117,14 +117,22 @@ $(document).ready(function() {
     catch(err) { console.log("Error trying to stop ", e.control); }
   });
 
+  function samplePlay(sample) {
+    var obj = s.select("#"+sample).attr({ stroke: "#fff", strokeWidth: 5 });
+    group.sounds[samples.indexOf(sample)].play();
+  }
+
+  function sampleStop(sample) {
+    var obj = s.select("#"+sample).attr({ stroke: "#fff", strokeWidth: 0 });
+    group.sounds[samples.indexOf(sample)].stop();
+  }
+
   s.mouseup(function(e){
-    var obj = s.select("#"+e.target.id).attr({ stroke: "#fff", strokeWidth: 0 });
-    group.sounds[samples.indexOf(e.target.id)].stop();
+    sampleStop(samples.indexOf(e.target.id));
   });
 
   s.mousedown(function(e){
-    var obj = s.select("#"+e.target.id).attr({ stroke: "#fff", strokeWidth: 5 });
-    group.sounds[samples.indexOf(e.target.id)].play();
+    samplePlay(samples.indexOf(e.target.id));
   });
 
   s.touchstart(function(e){
@@ -165,6 +173,34 @@ $(document).ready(function() {
       bankCounter++;
       bankSet(bankCounter);
     }
+  }
+
+  document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if(evt.repeat === false) console.log("KeyPress: ", evt.keyCode, evt.code);
+    if(evt.repeat === true) return;
+
+    // Change bank
+    if (evt.code == 'KeyZ') bankPrevious();
+    if (evt.code == 'KeyX') bankNext();
+
+    // Play samples
+    if (evt.code == 'KeyL') samplePlay('FACE_1');
+    if (evt.code == 'KeyP') samplePlay('FACE_2');
+    if (evt.code == 'KeyK') samplePlay('FACE_3');
+    if (evt.code == 'KeyO') samplePlay('FACE_4');
+    if (evt.code == 'KeyQ') samplePlay('LEFT_TOP_SHOULDER');
+    if (evt.code == 'KeyW') samplePlay('RIGHT_TOP_SHOULDER');
+  };
+
+  document.onkeyup = function(evt) {
+    evt = evt || window.event;
+    if (evt.code == 'KeyL') sampleStop('FACE_1');
+    if (evt.code == 'KeyP') sampleStop('FACE_2');
+    if (evt.code == 'KeyK') sampleStop('FACE_3');
+    if (evt.code == 'KeyO') sampleStop('FACE_4');
+    if (evt.code == 'KeyQ') sampleStop('LEFT_TOP_SHOULDER');
+    if (evt.code == 'KeyW') sampleStop('RIGHT_TOP_SHOULDER');
   }
 
 });

@@ -37,7 +37,7 @@ function loadBank(bank=1) {
     });
     group.addSound(banks[i]);
   }
-  group.addEffect(lowPassFilter);
+  //group.addEffect(lowPassFilter);
 }
 
 loadBank();
