@@ -1,8 +1,6 @@
-var samples = [ 'FACE_1', 'FACE_2', 'FACE_3', 'FACE_4', 'LEFT_TOP_SHOULDER', 'RIGHT_TOP_SHOULDER' ];
-var banks = {};
-var group;
-
-// Effects //
+/*
+ *  Effects
+ */
 var reverb = new Pizzicato.Effects.Reverb({
   time: 0.01,
   decay: 0.01,
@@ -14,6 +12,15 @@ var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
   frequency: 400,
   peak: 10
 });
+
+
+/*
+ *  Mapped buttons
+ */
+var samples = [ 'FACE_1', 'FACE_2', 'FACE_3', 'FACE_4', 'LEFT_TOP_SHOULDER', 'RIGHT_TOP_SHOULDER', 'DPAD_UP', 'DPAD_DOWN' ];
+var banks = {};
+var group;
+
 
 /*
  *  Load all banks at once
