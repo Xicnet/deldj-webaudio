@@ -103,6 +103,7 @@ $(document).ready(function() {
     else {
       try {
         group.sounds[samples.indexOf(e.control)].play();
+        if(e.control == 'LEFT_STICK') left_stick_on();
         s.select("#"+e.control).attr({ stroke: "#fff", strokeWidth: 5 });
       }
       catch(err) { console.log("Error trying to play ", e.control); }
@@ -110,6 +111,7 @@ $(document).ready(function() {
   });
 
   gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
+    if(e.control == 'LEFT_STICK') left_stick_off();
     try {
       group.sounds[samples.indexOf(e.control)].stop();
       s.select("#"+e.control).attr({ stroke: "#fff", strokeWidth: 0 });
@@ -152,8 +154,8 @@ $(document).ready(function() {
     }
   });
 
-  // Bank control //
 
+  // Bank control //
 
   function bankSet(bank) {
     loadBank(bank);
@@ -203,4 +205,14 @@ $(document).ready(function() {
     if (evt.code == 'KeyW') sampleStop('RIGHT_TOP_SHOULDER');
   }
 
+  /*
+   *  Sticks control
+   */
+
+   function left_stick_on() {
+     group.sounds[samples.indexOf('LEFT_STICK')].addEffect(lowPassFilter);
+   }
+   function left_stick_off() {
+     group.sounds[samples.indexOf('LEFT_STICK')].removeEffect(lowPassFilter);
+   }
 });

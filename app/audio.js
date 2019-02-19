@@ -17,7 +17,9 @@ var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
 /*
  *  Mapped buttons
  */
-var samples = [ 'FACE_1', 'FACE_2', 'FACE_3', 'FACE_4', 'LEFT_TOP_SHOULDER', 'RIGHT_TOP_SHOULDER', 'DPAD_UP', 'DPAD_DOWN' ];
+var samples = [ 'FACE_1', 'FACE_2', 'FACE_3', 'FACE_4', 'LEFT_TOP_SHOULDER', 'RIGHT_TOP_SHOULDER', 'DPAD_UP', 'DPAD_DOWN',
+  'LEFT_STICK', 'RIGHT_STICK'
+];
 var banks = {};
 var group;
 
