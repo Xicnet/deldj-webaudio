@@ -31,7 +31,7 @@ function loadBank(bank=1) {
   group = new Pizzicato.Group();
   console.log("bank: ", bank);
   for(var i=0 ; i<samples.length ; i++) {
-    var file = './audio/bank'+bank+'/'+samples[i].toLocaleLowerCase()+'.wav';
+    var file = './mp3/bank'+bank+'/'+samples[i].toLocaleLowerCase()+'.mp3';
     console.log("loading", file, samples[i]);
 
     banks[i] = new Pz.Sound({
