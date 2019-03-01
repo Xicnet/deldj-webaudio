@@ -183,26 +183,26 @@ $(document).ready(function() {
     if(evt.repeat === true) return;
 
     // Change bank
-    if (evt.code == 'KeyZ') bankPrevious();
-    if (evt.code == 'KeyX') bankNext();
+    if (evt.code == 'KeyB') bankPrevious();
+    if (evt.code == 'KeyN') bankNext();
 
     // Play samples
-    if (evt.code == 'KeyL') samplePlay('FACE_1');
-    if (evt.code == 'KeyP') samplePlay('FACE_2');
-    if (evt.code == 'KeyK') samplePlay('FACE_3');
-    if (evt.code == 'KeyO') samplePlay('FACE_4');
-    if (evt.code == 'KeyQ') samplePlay('LEFT_TOP_SHOULDER');
-    if (evt.code == 'KeyW') samplePlay('RIGHT_TOP_SHOULDER');
+    if (evt.code == 'KeyD') samplePlay('FACE_1');
+    if (evt.code == 'KeyS') samplePlay('FACE_2');
+    if (evt.code == 'KeyA') samplePlay('FACE_3');
+    if (evt.code == 'KeyW') samplePlay('FACE_4');
+    if (evt.code == 'ShiftLeft') samplePlay('LEFT_TOP_SHOULDER');
+    if (evt.code == 'Space') samplePlay('RIGHT_TOP_SHOULDER');
   };
 
   document.onkeyup = function(evt) {
     evt = evt || window.event;
-    if (evt.code == 'KeyL') sampleStop('FACE_1');
-    if (evt.code == 'KeyP') sampleStop('FACE_2');
-    if (evt.code == 'KeyK') sampleStop('FACE_3');
-    if (evt.code == 'KeyO') sampleStop('FACE_4');
-    if (evt.code == 'KeyQ') sampleStop('LEFT_TOP_SHOULDER');
-    if (evt.code == 'KeyW') sampleStop('RIGHT_TOP_SHOULDER');
+    if (evt.code == 'KeyD') sampleStop('FACE_1');
+    if (evt.code == 'KeyS') sampleStop('FACE_2');
+    if (evt.code == 'KeyA') sampleStop('FACE_3');
+    if (evt.code == 'KeyW') sampleStop('FACE_4');
+    if (evt.code == 'ShiftLeft') sampleStop('LEFT_TOP_SHOULDER');
+    if (evt.code == 'Space') sampleStop('RIGHT_TOP_SHOULDER');
   }
 
   /*
