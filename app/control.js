@@ -187,8 +187,8 @@ $(document).ready(function() {
     if (evt.code == 'KeyN') bankNext();
 
     // Play samples
-    if (evt.code == 'KeyD') samplePlay('FACE_1');
-    if (evt.code == 'KeyS') samplePlay('FACE_2');
+    if (evt.code == 'KeyS') samplePlay('FACE_1');
+    if (evt.code == 'KeyD') samplePlay('FACE_2');
     if (evt.code == 'KeyA') samplePlay('FACE_3');
     if (evt.code == 'KeyW') samplePlay('FACE_4');
     if (evt.code == 'ShiftLeft') samplePlay('LEFT_TOP_SHOULDER');
@@ -197,8 +197,8 @@ $(document).ready(function() {
 
   document.onkeyup = function(evt) {
     evt = evt || window.event;
-    if (evt.code == 'KeyD') sampleStop('FACE_1');
-    if (evt.code == 'KeyS') sampleStop('FACE_2');
+    if (evt.code == 'KeyS') sampleStop('FACE_1');
+    if (evt.code == 'KeyD') sampleStop('FACE_2');
     if (evt.code == 'KeyA') sampleStop('FACE_3');
     if (evt.code == 'KeyW') sampleStop('FACE_4');
     if (evt.code == 'ShiftLeft') sampleStop('LEFT_TOP_SHOULDER');
