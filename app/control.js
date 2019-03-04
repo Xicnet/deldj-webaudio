@@ -112,6 +112,8 @@ $(document).ready(function() {
 
   gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
     if(e.control == 'LEFT_STICK') left_stick_off();
+    else if(e.control == 'SELECT_BACK') var obj = s.select("#PrevBank").attr({ stroke: "#fff", strokeWidth: 0 });
+    else if(e.control == 'START_FORWARD') var obj = s.select("#NextBank").attr({ stroke: "#fff", strokeWidth: 0 });
     try {
       group.sounds[samples.indexOf(e.control)].stop();
       s.select("#"+e.control).attr({ stroke: "#fff", strokeWidth: 0 });
@@ -141,9 +143,13 @@ $(document).ready(function() {
     if (e.type === 'touchstart') {
       // Stop propagation : on touch devices the first click will be used and not the second.
       var obj = s.select("#"+e.target.id).attr({ stroke: "#fff", strokeWidth: 5 });
-      group.sounds[samples.indexOf(e.target.id)].play();
-      e.stopPropagation();
-      e.preventDefault();
+      if(e.target.id == 'PrevBank') bankPrevious();
+      else if(e.target.id == 'NextBank') bankNext();
+      else {
+        group.sounds[samples.indexOf(e.target.id)].play();
+        e.stopPropagation();
+        e.preventDefault();
+      }
     }
   });
 
@@ -166,13 +172,15 @@ $(document).ready(function() {
   function bankPrevious() {
     if(bankCounter > 1) {
       bankCounter--;
+      var obj = s.select("#PrevBank").attr({ stroke: "#fff", strokeWidth: 5 });
       bankSet(bankCounter);
     }
   }
 
   function bankNext() {
-    if(bankCounter < 9) {
+    if(bankCounter < 3) {
       bankCounter++;
+      var obj = s.select("#NextBank").attr({ stroke: "#fff", strokeWidth: 5 });
       bankSet(bankCounter);
     }
   }
@@ -197,6 +205,10 @@ $(document).ready(function() {
 
   document.onkeyup = function(evt) {
     evt = evt || window.event;
+
+    if (evt.code == 'KeyB') var obj = s.select("#PrevBank").attr({ stroke: "#fff", strokeWidth: 0 });
+    if (evt.code == 'KeyN') var obj = s.select("#NextBank").attr({ stroke: "#fff", strokeWidth: 0 });
+
     if (evt.code == 'KeyS') sampleStop('FACE_1');
     if (evt.code == 'KeyD') sampleStop('FACE_2');
     if (evt.code == 'KeyA') sampleStop('FACE_3');
@@ -209,10 +221,10 @@ $(document).ready(function() {
    *  Sticks control
    */
 
-   function left_stick_on() {
-     group.sounds[samples.indexOf('LEFT_STICK')].addEffect(lowPassFilter);
-   }
-   function left_stick_off() {
-     group.sounds[samples.indexOf('LEFT_STICK')].removeEffect(lowPassFilter);
-   }
+  function left_stick_on() {
+    group.sounds[samples.indexOf('LEFT_STICK')].addEffect(lowPassFilter);
+  }
+  function left_stick_off() {
+    group.sounds[samples.indexOf('LEFT_STICK')].removeEffect(lowPassFilter);
+  }
 });
